@@ -208,3 +208,5 @@ class Slider {
             }))
 
 ```
+
+完整代码见https://github.com/Winder6/wheels/blob/master/carousel.html
