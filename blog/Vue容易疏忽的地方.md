@@ -3,7 +3,7 @@
 ```html
 <ul>
     <li v-for="(item, index) in data" @click="handleClick(index)">
-        {{index}
+        {{index}}
     </li>
 </ul>
 ```
