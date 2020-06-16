@@ -3,7 +3,7 @@
 
 # 单例模式
 需要时才创建对象实例，不默认调用
-```
+```js
 var getSingle = function( fn ){
 var result;
     return function(){
@@ -28,7 +28,7 @@ document.getElementById( 'loginBtn' ).onclick = function(){
 
 # 策略模式
 消除if else
-```
+```js
 //原版
 var calculateBonus = function( performanceLevel, salary ){
 if ( performanceLevel === 'S' ){
@@ -64,36 +64,36 @@ console.log( calculateBonus( 'A', 10000 ) ); // 输出：30000
 ```
 # 代理模式
 不方便直接访问对象，考虑采用此模式
-```
-先创建一个用于求乘积的函数：
-var mult = function(){
-console.log( '开始计算乘积' );
-var a = 1;
-for ( var i = 0, l = arguments.length; i < l; i++ ){
-a = a * arguments[i];
-}
-return a;
+```js
+//先创建一个用于求乘积的函数：
+var mult = function () {
+  console.log("开始计算乘积");
+  var a = 1;
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    a = a * arguments[i];
+  }
+  return a;
 };
-mult( 2, 3 ); // 输出：6
-mult( 2, 3, 4 ); // 输出：24
-现在加入缓存代理函数：
-var proxyMult = (function(){
-var cache = {};
-return function(){
-var args = Array.prototype.join.call( arguments, ',' );
-if ( args in cache ){
-return cache[ args ];
-}
-return cache[ args ] = mult.apply( this, arguments );
-}
+mult(2, 3); // 输出：6
+mult(2, 3, 4); // 输出：24
+//现在加入缓存代理函数：
+var proxyMult = (function () {
+  var cache = {};
+  return function () {
+    var args = Array.prototype.join.call(arguments, ",");
+    if (args in cache) {
+      return cache[args];
+    }
+    return (cache[args] = mult.apply(this, arguments));
+  };
 })();
-proxyMult( 1, 2, 3, 4 ); // 输出：24
-proxyMult( 1, 2, 3, 4 ); // 输出：24
+proxyMult(1, 2, 3, 4); // 输出：24
+proxyMult(1, 2, 3, 4); // 输出：24
 ```
 
 # 迭代器模式
 迭代器模式是指提供一种方法顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心对象的内部构造，也可以按顺序访问其中的每个元素
-```
+```js
 var getUploadObj = function(){
     try{
         return new ActiveXObject("TXFTNActiveX.FTNUpload"); // IE 上传控件
@@ -143,7 +143,7 @@ var getUploadObj = function(){
 
 # 发布订阅模式
 又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。
-```
+```js
 var Event = (function(){
 		var clientList = {},
 		listen,
@@ -198,7 +198,7 @@ var Event = (function(){
 
 # 命令模式
 有时候需要向某些对象发送请求，但是并不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。
-```
+```js
 	var bindClick = function( button, func ){
 			button.onclick = func;
 		};
@@ -223,7 +223,7 @@ var Event = (function(){
 
 # 组合模式
 父对象和子对象有一样的方法
-```
+```js
 var closeDoorCommand = {
 		execute: function(){
 			console.log( '关门' );
@@ -261,7 +261,7 @@ var closeDoorCommand = {
 
 # 模板方法模式
 模板方法模式由两部分结构组成，第一部分是抽象父类，第二部分是具体的实现子类。通常在抽象父类中封装了子类的算法框架，包括实现一些公共方法以及封装子类中所有方法的执行顺序。子类通过继承这个抽象类，也继承了整个算法结构，并且可以选择重写父类的方法。
-```
+```js
 var Beverage = function( param ){
 		var boilWater = function(){
 			console.log( '把水煮沸' );
@@ -315,7 +315,7 @@ var Beverage = function( param ){
 
 # 享元模式
 享元模式要求将对象的属性划分为内部状态与外部状态（状态在这里通常指属性）。享元模式的目标是尽量减少共享对象的数量,可以把所有内部状态相同的对象都指定为同一个共享的对象。而外部状态可以从对象身上剥离出来，并储存在外部。剥离了外部状态的对象成为共享对象，外部状态在必要时被传入共享对象来组装成一个完整的对象。
-```
+```js
 	var Model = function( sex ){
 		this.sex = sex;
 	};
@@ -340,7 +340,7 @@ var Beverage = function( param ){
 # 职责链模式
 使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间
 的耦合关系，将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。
-```
+```js
 	var order500 = function( orderType, pay, stock ){
 		if ( orderType === 1 && pay === true ){
 			console.log( '500 元定金预购，得到100 优惠券' );
@@ -385,7 +385,7 @@ var Beverage = function( param ){
 ```
 # 中介者模式
 中介者模式的作用就是解除对象与对象之间的紧耦合关系。增加一个中介者对象后，所有的相关对象都通过中介者对象来通信，而不是互相引用，所以当一个对象发生改变时，只需要通知中介者对象即可。中介者使各对象之间耦合松散，而且可以独立地改变它们之间的交互。中介者模式使网状的多对多关系变成了相对简单的一对多关系
-```
+```js
     var goods = { // 手机库存
         "red|32G": 3,
         "red|16G": 0,
@@ -449,7 +449,7 @@ var Beverage = function( param ){
 # 装饰者模式
 给对象动态地增加职责的方式称为装饰者（decorator）模式。装饰者式能够在不改变对象自身的基础上，在程序运行期间给对象动态地添加职责。跟继承相比，装饰者是一种更轻便灵活的做法，这是一种“即用即付”的方式
 
-```
+```js
 Function.prototype.before = function( beforefn ){
 		var __self = this;
 		return function(){
@@ -492,7 +492,7 @@ Function.prototype.before = function( beforefn ){
 
 # 状态模式
 将状态封装成独立的类，并将请求委托给当前的状态对象，当对象的内部状态改变时，会带来不同的行为变化。从客户的角度来看，我们使用的对象，在不同的状态下具有截然不同的行为，这个对象看起来是从不同的类中实例化而来的，实际上这是使用了委托的效果。
-```
+```js
 var OffLightState = function( light ){
 		this.light = light;
 	};
@@ -548,7 +548,7 @@ WeakLightState.prototype.buttonWasPressed = function(){
 
 # 适配器模式
 适配器模式的作用是解决两个软件实体间的接口不兼容的问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。
-```
+```js
 	var googleMap = {
 		show: function(){
 			console.log( '开始渲染谷歌地图' );
