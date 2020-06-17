@@ -6,3 +6,5 @@
 [《css世界有意思的案例》](https://github.com/Winder6/blog/blob/master/blog/css%E4%B8%96%E7%95%8C%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E6%A1%88%E4%BE%8B.md)
 
 [《JavaScript设计模式与开发实践》记录](https://github.com/Winder6/blog/blob/master/blog/%E3%80%8AJavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%E3%80%8B%E8%AE%B0%E5%BD%95.md)
+
+[scratch-paint原理解析](https://github.com/Winder6/blog/blob/master/blog/scratch-paint%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90.md)
