@@ -10,4 +10,4 @@
 - 1.canvas初始化：paper-canvas组件(本质是个canvas)装载后调用paperjs的setup方法初始化
 - 2.生成核心图层：backgroundGuideLayer 背景方格子；guidelayer：高亮图形的路径；paintLayer：画新图形生成在这层；rasterLayer: 栅格层，位图模式主要是在这层编辑
 - 3.编辑：调用各个help里的tool方法，使用paperjs的方法实现功能
-- 4.该编辑操作完成：顶层组件可拿到编辑后的图像，和旋转中心数据，供其他用途，在慧编程中，会显示到舞台的canvas里
+- 4.编辑操作完成：顶层组件可拿到编辑后的图像，和旋转中心数据，供其他用途，在慧编程中，会显示到舞台的canvas里
