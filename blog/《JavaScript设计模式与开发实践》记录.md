@@ -565,6 +565,11 @@ WeakLightState.prototype.buttonWasPressed = function(){
 
 		}
 	};
+	var renderMap = function( map ){
+	    if ( map.show instanceof Function ){
+		map.show(); 
+	    }
+	};
 
 	renderMap( googleMap ); // 输出：开始渲染谷歌地图
 	renderMap( baiduMapAdapter ); // 输出：开始渲染百度地图
