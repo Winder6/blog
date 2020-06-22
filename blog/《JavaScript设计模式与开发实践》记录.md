@@ -202,23 +202,23 @@ var Event = (function(){
 	var bindClick = function( button, func ){
 			button.onclick = func;
 		};
-		var MenuBar = {
-			refresh: function(){
-				console.log( '刷新菜单界面' );
-			}
-		};
-		var SubMenu = {
-			add: function(){
-				console.log( '增加子菜单' );
-			},
-			del: function(){
-				console.log( '删除子菜单' );
-			}
-		};
-		bindClick( button1, MenuBar.refresh );
+	var MenuBar = {
+		refresh: function(){
+			console.log( '刷新菜单界面' );
+		}
+	};
+	var SubMenu = {
+		add: function(){
+			console.log( '增加子菜单' );
+		},
+		del: function(){
+			console.log( '删除子菜单' );
+		}
+	};
+	bindClick( button1, MenuBar.refresh );
 
-		bindClick( button2, SubMenu.add );
-		bindClick( button3, SubMenu.del );
+	bindClick( button2, SubMenu.add );
+	bindClick( button3, SubMenu.del );
 ```
 
 # 组合模式
@@ -229,34 +229,34 @@ var closeDoorCommand = {
 			console.log( '关门' );
 		}
 	};
-	var openPcCommand = {
+var openPcCommand = {
+	execute: function(){
+		console.log( '开电脑' );
+	}
+};
+var openQQCommand = {
+	execute: function(){
+		console.log( '登录QQ' );
+	}
+};
+var MacroCommand = function(){
+	return {
+		commandsList: [],
+		add: function( command ){
+			this.commandsList.push( command );
+		},
 		execute: function(){
-			console.log( '开电脑' );
-		}
-	};
-	var openQQCommand = {
-		execute: function(){
-			console.log( '登录QQ' );
-		}
-	};
-	var MacroCommand = function(){
-		return {
-			commandsList: [],
-			add: function( command ){
-				this.commandsList.push( command );
-			},
-			execute: function(){
-				for ( var i = 0, command; command = this.commandsList[ i++ ]; ){
-					command.execute();
-				}
+			for ( var i = 0, command; command = this.commandsList[ i++ ]; ){
+				command.execute();
 			}
 		}
-	};
-	var macroCommand = MacroCommand();
-	macroCommand.add( closeDoorCommand );
-	macroCommand.add( openPcCommand );
-	macroCommand.add( openQQCommand );
-	macroCommand.execute();
+	}
+};
+var macroCommand = MacroCommand();
+macroCommand.add( closeDoorCommand );
+macroCommand.add( openPcCommand );
+macroCommand.add( openQQCommand );
+macroCommand.execute();
 ```
 
 # 模板方法模式
@@ -284,33 +284,33 @@ var Beverage = function( param ){
 		};
 		return F;
 	};
-	var Coffee = Beverage({
-		brew: function(){
-			console.log( '用沸水冲泡咖啡' );
-		},
-		pourInCup: function(){
-			console.log( '把咖啡倒进杯子' );
-		},
-		addCondiments: function(){
-			console.log( '加糖和牛奶' );
-		}
-	});
+var Coffee = Beverage({
+	brew: function(){
+		console.log( '用沸水冲泡咖啡' );
+	},
+	pourInCup: function(){
+		console.log( '把咖啡倒进杯子' );
+	},
+	addCondiments: function(){
+		console.log( '加糖和牛奶' );
+	}
+});
 
-	var Tea = Beverage({
-		brew: function(){
-			console.log( '用沸水浸泡茶叶' );
-		},
-		pourInCup: function(){
-			console.log( '把茶倒进杯子' );
-		},
-		addCondiments: function(){
-			console.log( '加柠檬' );
-		}
-	});
-	var coffee = new Coffee();
-	coffee.init();
-	var tea = new Tea();
-	tea.init();
+var Tea = Beverage({
+	brew: function(){
+		console.log( '用沸水浸泡茶叶' );
+	},
+	pourInCup: function(){
+		console.log( '把茶倒进杯子' );
+	},
+	addCondiments: function(){
+		console.log( '加柠檬' );
+	}
+});
+var coffee = new Coffee();
+coffee.init();
+var tea = new Tea();
+tea.init();
 ```
 
 # 享元模式

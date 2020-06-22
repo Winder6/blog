@@ -6,7 +6,7 @@ js内存的申请和释放都是自动的，释放主要是通过垃圾回收机
  
 - 1.引用计数
 
-‘没被其他对象引用即为垃圾‘，通过计数来判断是否被其他对象引用，为0时就可被清除。但是无法解决循环引用的问题。
+“没被其他对象引用即为垃圾”，通过计数来判断是否被其他对象引用，为0时就可被清除。但是无法解决循环引用的问题。
 
 ```js
 
@@ -68,8 +68,18 @@ function grow() {
 
 document.getElementById('grow').addEventListener('click', grow);
 
+```
+```js
+function createGlobalVariables() {
+    leaking1 = 'I leak into the global scope'; // 将值分配给未声明的变量
+    this.leaking2 = 'I also leak into the global scope'; // 使用“this”指向全局对象。
+};
+createGlobalVariables();
+window.leaking1; // 'I leak into the global scope'
+window.leaking2; // 'I also leak into the global scope'
 
 ```
+预防措施：使用严格模式（"use strict"）。
 
 - 2.未及时清除的计数器或者回调方法
  
@@ -132,3 +142,6 @@ leafRef = null;
 ## react项目中注意点
 - 在componentWillUnmount时移除自定义事件监听和清除定时器
 - 慎重使用第三方库，使用后可以测试下是否会产生内存泄露
+
+## 参考
+https://mp.weixin.qq.com/s?src=11&timestamp=1592815347&ver=2415&signature=6FG9pMEx1u0J3h5EJx3*QJMfTM-ubKtRZYUpP7v076uP8jXF8nCixpl0YzxC3uMzoitLv8nKvZV5MU-GQfwkrzA3F*ny0IdxpoY7VsPSYPJJUWRUK6H*O7jZo4dgM1Ya&new=1
